@@ -1,0 +1,11 @@
+.vscode
+__pycache__/
+*.py[co]
+data/
+log/
+output/
+pretrained_models
+scripts/
+detail-api/
+data/list
+data/pole/*
