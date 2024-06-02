@@ -1,0 +1,59 @@
+MODEL:
+  NAME: 'seg_hrnet'
+  PRETRAINED: 'path/to/pretrained/model'
+  NUM_CLASSES: 5  # Ensure this is set correctly
+  EXTRA:
+    FINAL_CONV_KERNEL: 1
+    STAGE1:
+      NUM_MODULES: 1
+      NUM_BRANCHES: 1
+      BLOCK: 'BOTTLENECK'
+      NUM_BLOCKS: [4]
+      NUM_CHANNELS: [64]
+      FUSE_METHOD: 'SUM'
+    STAGE2:
+      NUM_MODULES: 1
+      NUM_BRANCHES: 2
+      BLOCK: 'BASIC'
+      NUM_BLOCKS: [4, 4]
+      NUM_CHANNELS: [48, 96]
+      FUSE_METHOD: 'SUM'
+    STAGE3:
+      NUM_MODULES: 4
+      NUM_BRANCHES: 3
+      BLOCK: 'BASIC'
+      NUM_BLOCKS: [4, 4, 4]
+      NUM_CHANNELS: [48, 96, 192]
+      FUSE_METHOD: 'SUM'
+    STAGE4:
+      NUM_MODULES: 3
+      NUM_BRANCHES: 4
+      BLOCK: 'BASIC'
+      NUM_BLOCKS: [4, 4, 4, 4]
+      NUM_CHANNELS: [48, 96, 192, 384]
+      FUSE_METHOD: 'SUM'
+
+DATASET:
+  ROOT: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/data/pole/'
+  TRAIN_SET: 'images/train'
+  TEST_SET: 'images/val'
+  NUM_CLASSES: 5
+  ANNOTATIONS: 'annotations/instances_default.json'
+
+TRAIN:
+  LR: 0.02
+  WD: 1e-4
+  BATCH_SIZE_PER_GPU: 16
+  EPOCHS: 120
+
+TEST:
+  BATCH_SIZE_PER_GPU: 16
+
+GPUS: (0,1,2,3)
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+
+OUTPUT_DIR: 'experiments'
+LOG_DIR: 'log'
