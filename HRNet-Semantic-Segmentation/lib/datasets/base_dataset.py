@@ -77,38 +77,27 @@ class BaseDataset(data.Dataset):
 
         return image, label
 
-    def multi_scale_aug(self, image, label, rand_scale=1, rand_crop=True):
+    def multi_scale_aug(self, image, label=None,
+                        rand_scale=1, rand_crop=True):
         long_size = int(self.base_size * rand_scale + 0.5)
         h, w = image.shape[:2]
         if h > w:
             new_h = long_size
-            new_w = int(1.0 * w * long_size / h + 0.5)
+            new_w = int(w * long_size / h + 0.5)
         else:
             new_w = long_size
-            new_h = int(1.0 * h * long_size / w + 0.5)
+            new_h = int(h * long_size / w + 0.5)
 
-        image = cv2.resize(image, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
-        label = cv2.resize(label, (new_w, new_h), interpolation=cv2.INTER_NEAREST)
+        image = cv2.resize(image, (new_w, new_h),
+                           interpolation=cv2.INTER_LINEAR)
+        if label is not None:
+            label = cv2.resize(label, (new_w, new_h),
+                               interpolation=cv2.INTER_NEAREST)
+        else:
+            return image
 
         if rand_crop:
-            h, w = label.shape
-            pad_h = max(self.crop_size[0] - h, 0)
-            pad_w = max(self.crop_size[1] - w, 0)
-            if pad_h > 0 or pad_w > 0:
-                image = cv2.copyMakeBorder(image, 0, pad_h, 0, pad_w,
-                                           cv2.BORDER_CONSTANT,
-                                           value=self.mean)
-                label = cv2.copyMakeBorder(label, 0, pad_h, 0, pad_w,
-                                           cv2.BORDER_CONSTANT,
-                                           value=self.ignore_label)
-
-            h, w = label.shape
-            start_h = np.random.randint(0, h - self.crop_size[0] + 1)
-            start_w = np.random.randint(0, w - self.crop_size[1] + 1)
-            image = image[start_h:start_h + self.crop_size[0],
-                    start_w:start_w + self.crop_size[1]]
-            label = label[start_h:start_h + self.crop_size[0],
-                    start_w:start_w + self.crop_size[1]]
+            image, label = self.rand_crop(image, label)
 
         return image, label
 
@@ -116,10 +105,10 @@ class BaseDataset(data.Dataset):
         h, w = image.shape[:2]
         if h < w:
             new_h = short_length
-            new_w = np.int(w * short_length / h + 0.5)
+            new_w = int(w * short_length / h + 0.5)
         else:
             new_w = short_length
-            new_h = np.int(h * short_length / w + 0.5)        
+            new_h = int(h * short_length / w + 0.5)
         image = cv2.resize(image, (new_w, new_h),
                            interpolation=cv2.INTER_LINEAR)
         pad_w, pad_h = 0, 0
@@ -233,8 +222,8 @@ class BaseDataset(data.Dataset):
         batch, _, ori_height, ori_width = image.size()
         assert batch == 1, "only supporting batchsize 1."
         image = image.numpy()[0].transpose((1, 2, 0)).copy()
-        stride_h = np.int(self.crop_size[0] * 2.0 / 3.0)
-        stride_w = np.int(self.crop_size[1] * 2.0 / 3.0)
+        stride_h = int(self.crop_size[0] * 2.0 / 3.0)
+        stride_w = int(self.crop_size[1] * 2.0 / 3.0)
         final_pred = torch.zeros([1, self.num_classes,
                                   ori_height, ori_width]).cuda()
         padvalue = -1.0 * np.array(self.mean) / np.array(self.std)
@@ -257,9 +246,9 @@ class BaseDataset(data.Dataset):
                     new_img = self.pad_image(new_img, height, width,
                                              self.crop_size, padvalue)
                 new_h, new_w = new_img.shape[:-1]
-                rows = np.int(np.ceil(1.0 * (new_h -
+                rows = int(np.ceil(1.0 * (new_h -
                                              self.crop_size[0]) / stride_h)) + 1
-                cols = np.int(np.ceil(1.0 * (new_w -
+                cols = int(np.ceil(1.0 * (new_w -
                                              self.crop_size[1]) / stride_w)) + 1
                 preds = torch.zeros([1, self.num_classes,
                                      new_h, new_w]).cuda()
