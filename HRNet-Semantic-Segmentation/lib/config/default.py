@@ -57,6 +57,11 @@ _C.DATASET.EXTRA_TRAIN_SET = ''
 _C.DATASET.TEST_SET = 'images/val'
 _C.DATASET.ANNOTATIONS = 'annotations/instances_default.json'
 
+_C.OUTPUT_DIR = 'outputs/'
+_C.CHECKPOINT_DIR = 'outputs/checkpoints/'
+_C.BEST_MODEL_DIR = 'outputs/best_models/'
+_C.LOG_DIR = 'logs/'
+
 # training
 _C.TRAIN = CN()
 

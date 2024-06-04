@@ -1,6 +1,7 @@
 MODEL:
   NAME: 'seg_hrnet'
-  PRETRAINED: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/pretrained_models/hrnetv2_w48_imagenet_pretrained.pth'
+  #PRETRAINED: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/pretrained_models/hrnetv2_w48_imagenet_pretrained.pth'
+  PRETRAINED: ''
   NUM_CLASSES: 5
   EXTRA:
     FINAL_CONV_KERNEL: 1
@@ -69,6 +70,7 @@ TEST:
   BATCH_SIZE_PER_GPU: 16
   FLIP_TEST: false
   MULTI_SCALE: false
+  MODEL_FILE: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/best_models/best.pth'
 
 GPUS: (0,1,2,3)
 CUDNN:
@@ -77,4 +79,6 @@ CUDNN:
   ENABLED: true
 
 OUTPUT_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output'
+CHECKPOINT_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/checkpoints'
+BEST_MODEL_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/best_models'
 LOG_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/log'
