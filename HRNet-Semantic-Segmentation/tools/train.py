@@ -1,4 +1,8 @@
-# train.py 파일
+# ------------------------------------------------------------------------------
+# Copyright (c) Microsoft
+# Licensed under the MIT License.
+# Written by Ke Sun (sunk@mail.ustc.edu.cn)
+# ------------------------------------------------------------------------------
 
 import argparse
 import os
@@ -11,18 +15,17 @@ import time
 import timeit
 from pathlib import Path
 
-import numpy as np
-
 import torch
-import torch.backends.cudnn as cudnn
 import torch.nn as nn
+import torch.backends.cudnn as cudnn
 import torch.optim
 from tensorboardX import SummaryWriter
 
 import _init_paths
-import datasets
 import models
-from config import config, update_config
+import datasets
+from config import config
+from config import update_config
 from core.criterion import CrossEntropy, OhemCrossEntropy
 from core.function import train, validate
 from utils.modelsummary import get_model_summary
@@ -83,7 +86,9 @@ def main():
     cudnn.benchmark = config.CUDNN.BENCHMARK
     cudnn.deterministic = config.CUDNN.DETERMINISTIC
     cudnn.enabled = config.CUDNN.ENABLED
-    gpus = list(config.GPUS)
+
+    gpus = [0]
+
     distributed = args.local_rank >= 0
     if distributed:
         device = torch.device('cuda:{}'.format(args.local_rank))
@@ -92,19 +97,12 @@ def main():
             backend="nccl", init_method="env://",
         )
 
-    # build model
-    model = eval('models.' + config.MODEL.NAME + '.get_seg_model')(config)
+        # build model
+    model = eval('models.' + config.MODEL.NAME +
+                 '.get_seg_model')(config)
 
-    # copy model file
-    if distributed and args.local_rank == 0:
-        this_dir = os.path.dirname(__file__)
-        models_dst_dir = os.path.join(final_output_dir, 'models')
-
-    if distributed:
-        batch_size = config.TRAIN.BATCH_SIZE_PER_GPU
-    else:
-        batch_size = config.TRAIN.BATCH_SIZE_PER_GPU * len(gpus)
-
+    # 줄인 배치 사이즈
+    batch_size = config.TRAIN.BATCH_SIZE_PER_GPU
     # prepare data
     crop_size = (config.TRAIN.IMAGE_SIZE[1], config.TRAIN.IMAGE_SIZE[0])
     train_dataset = eval('datasets.' + config.DATASET.DATASET)(
@@ -119,9 +117,6 @@ def main():
         crop_size=crop_size,
         downsample_rate=config.TRAIN.DOWNSAMPLERATE,
         scale_factor=config.TRAIN.SCALE_FACTOR)
-
-    if len(train_dataset) == 0:
-        raise ValueError("Training dataset is empty. Please check the dataset path and contents.")
 
     train_sampler = get_sampler(train_dataset)
     trainloader = torch.utils.data.DataLoader(
@@ -172,9 +167,6 @@ def main():
         crop_size=test_size,
         downsample_rate=1)
 
-    if len(test_dataset) == 0:
-        raise ValueError("Validation dataset is empty. Please check the dataset path and contents.")
-
     test_sampler = get_sampler(test_dataset)
     testloader = torch.utils.data.DataLoader(
         test_dataset,
@@ -208,6 +200,7 @@ def main():
 
     # optimizer
     if config.TRAIN.OPTIMIZER == 'sgd':
+
         params_dict = dict(model.named_parameters())
         if config.TRAIN.NONBACKBONE_KEYWORDS:
             bb_lr = []
@@ -240,7 +233,8 @@ def main():
     best_mIoU = 0
     last_epoch = 0
     if config.TRAIN.RESUME:
-        model_state_file = os.path.join(final_output_dir, 'checkpoint.pth.tar')
+        model_state_file = os.path.join(final_output_dir,
+                                        'checkpoint.pth.tar')
         if os.path.isfile(model_state_file):
             checkpoint = torch.load(model_state_file, map_location={'cuda:0': 'cpu'})
             best_mIoU = checkpoint['best_mIoU']
@@ -250,7 +244,8 @@ def main():
             model.module.model.load_state_dict(
                 {k.replace('model.', ''): v for k, v in checkpoint['state_dict'].items() if k.startswith('model.')})
             optimizer.load_state_dict(checkpoint['optimizer'])
-            logger.info("=> loaded checkpoint (epoch {})".format(checkpoint['epoch']))
+            logger.info("=> loaded checkpoint (epoch {})"
+                        .format(checkpoint['epoch']))
         if distributed:
             torch.distributed.barrier()
 
@@ -265,6 +260,9 @@ def main():
         if current_trainloader.sampler is not None and hasattr(current_trainloader.sampler, 'set_epoch'):
             current_trainloader.sampler.set_epoch(epoch)
 
+        # valid_loss, mean_IoU, IoU_array = validate(config,
+        #             testloader, model, writer_dict)
+
         if epoch >= config.TRAIN.END_EPOCH:
             train(config, epoch - config.TRAIN.END_EPOCH,
                   config.TRAIN.EXTRA_EPOCH, extra_epoch_iters,
@@ -275,10 +273,12 @@ def main():
                   epoch_iters, config.TRAIN.LR, num_iters,
                   trainloader, optimizer, model, writer_dict)
 
-        valid_loss, mean_IoU, IoU_array = validate(config, testloader, model, writer_dict)
+        valid_loss, mean_IoU, IoU_array = validate(config,
+                                                   testloader, model, writer_dict)
 
         if args.local_rank <= 0:
-            logger.info('=> saving checkpoint to {}'.format(final_output_dir + 'checkpoint.pth.tar'))
+            logger.info('=> saving checkpoint to {}'.format(
+                final_output_dir + 'checkpoint.pth.tar'))
             torch.save({
                 'epoch': epoch + 1,
                 'best_mIoU': best_mIoU,
@@ -287,23 +287,21 @@ def main():
             }, os.path.join(final_output_dir, 'checkpoint.pth.tar'))
             if mean_IoU > best_mIoU:
                 best_mIoU = mean_IoU
-                torch.save(model.module.state_dict(), os.path.join(final_output_dir, 'best.pth'))
-            msg = 'Loss: {:.3f}, MeanIU: {: 4.4f}, Best_mIoU: {: 4.4f}'.format(valid_loss, mean_IoU, best_mIoU)
+                torch.save(model.module.state_dict(),
+                           os.path.join(final_output_dir, 'best.pth'))
+            msg = 'Loss: {:.3f}, MeanIU: {: 4.4f}, Best_mIoU: {: 4.4f}'.format(
+                valid_loss, mean_IoU, best_mIoU)
             logging.info(msg)
             logging.info(IoU_array)
 
     if args.local_rank <= 0:
-        torch.save(model.module.state_dict(), os.path.join(final_output_dir, 'final_state.pth'))
+        torch.save(model.module.state_dict(),
+                   os.path.join(final_output_dir, 'final_state.pth'))
+
         writer_dict['writer'].close()
         end = timeit.default_timer()
         logger.info('Hours: %d' % int((end - start) / 3600))
         logger.info('Done')
-
-    # Save results for later visualization
-    with open(os.path.join(final_output_dir, 'results.txt'), 'w') as f:
-        f.write(f"Best mIoU: {best_mIoU}\n")
-        f.write(f"Final Loss: {valid_loss}\n")
-        f.write(f"IoU Array: {IoU_array}\n")
 
 
 if __name__ == '__main__':

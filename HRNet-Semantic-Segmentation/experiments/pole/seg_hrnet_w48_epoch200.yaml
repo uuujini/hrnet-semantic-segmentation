@@ -1,55 +1,93 @@
+CUDNN:
+  BENCHMARK: true
+  DETERMINISTIC: false
+  ENABLED: true
+
+GPUS: (0,1,2,3)
+
+OUTPUT_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output'
+LOG_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/log'
+WORKERS: 4
+PRINT_FREQ: 10
+
+DATASET:
+  ROOT: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/data/pole/'
+  DATASET: 'pole'
+  TRAIN_SET: 'images/train'
+  TEST_SET: 'images/val'
+  NUM_CLASSES: 5
+  ANNOTATIONS: 'annotations/instances_default.json'
+
 MODEL:
   NAME: 'seg_hrnet'
-  #PRETRAINED: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/pretrained_models/hrnetv2_w48_imagenet_pretrained.pth'
-  PRETRAINED: ''
+  PRETRAINED: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/pretrained_models/hrnetv2_w48_imagenet_pretrained.pth'
   NUM_CLASSES: 5
   EXTRA:
     FINAL_CONV_KERNEL: 1
     STAGE1:
       NUM_MODULES: 1
-      NUM_BRANCHES: 1
-      BLOCK: 'BOTTLENECK'
-      NUM_BLOCKS: [4]
-      NUM_CHANNELS: [64]
-      FUSE_METHOD: 'SUM'
+      NUM_RANCHES: 1
+      BLOCK: BOTTLENECK
+      NUM_BLOCKS:
+        - 4
+      NUM_CHANNELS:
+        - 64
+      FUSE_METHOD: SUM
     STAGE2:
       NUM_MODULES: 1
       NUM_BRANCHES: 2
-      BLOCK: 'BASIC'
-      NUM_BLOCKS: [4, 4]
-      NUM_CHANNELS: [48, 96]
-      FUSE_METHOD: 'SUM'
+      BLOCK: BASIC
+      NUM_BLOCKS:
+        - 4
+        - 4
+      NUM_CHANNELS:
+        - 48
+        - 96
+      FUSE_METHOD: SUM
     STAGE3:
       NUM_MODULES: 4
       NUM_BRANCHES: 3
-      BLOCK: 'BASIC'
-      NUM_BLOCKS: [4, 4, 4]
-      NUM_CHANNELS: [48, 96, 192]
-      FUSE_METHOD: 'SUM'
+      BLOCK: BASIC
+      NUM_BLOCKS:
+        - 4
+        - 4
+        - 4
+      NUM_CHANNELS:
+        - 48
+        - 96
+        - 192
+      FUSE_METHOD: SUM
     STAGE4:
       NUM_MODULES: 3
       NUM_BRANCHES: 4
-      BLOCK: 'BASIC'
-      NUM_BLOCKS: [4, 4, 4, 4]
-      NUM_CHANNELS: [48, 96, 192, 384]
-      FUSE_METHOD: 'SUM'
+      BLOCK: BASIC
+      NUM_BLOCKS:
+        - 4
+        - 4
+        - 4
+        - 4
+      NUM_CHANNELS:
+        - 48
+        - 96
+        - 192
+        - 384
+      FUSE_METHOD: SUM
 
-DATASET:
-  ROOT: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/data/pole/'
-  TRAIN_SET: 'images/train'
-  TEST_SET: 'images/val'
-  NUM_CLASSES: 5
-  ANNOTATIONS: 'annotations/instances_default.json'
+LOSS:
+  USE_OHEM: false
+  OHEMTHRES: 0.9
+  OHEMKEEP: 131072
+  BALANCE_WEIGHTS: [ 1 ]
 
 TRAIN:
   IMAGE_SIZE:
     - 520
     - 520
   BASE_SIZE: 520
-  BATCH_SIZE_PER_GPU: 16
+  BATCH_SIZE_PER_GPU: 5
   SHUFFLE: true
   BEGIN_EPOCH: 0
-  END_EPOCH: 120
+  END_EPOCH: 1
   RESUME: false
   OPTIMIZER: sgd
   LR: 0.02
@@ -72,13 +110,5 @@ TEST:
   MULTI_SCALE: false
   MODEL_FILE: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/best_models/best.pth'
 
-GPUS: (0,1,2,3)
-CUDNN:
-  BENCHMARK: true
-  DETERMINISTIC: false
-  ENABLED: true
-
-OUTPUT_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output'
 CHECKPOINT_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/checkpoints'
 BEST_MODEL_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/output/best_models'
-LOG_DIR: 'C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/log'

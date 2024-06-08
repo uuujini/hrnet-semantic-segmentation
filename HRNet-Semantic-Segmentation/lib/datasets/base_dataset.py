@@ -213,7 +213,7 @@ class BaseDataset(data.Dataset):
 
             flip_pred = flip_output.cpu().numpy().copy()
             flip_pred = torch.from_numpy(
-                flip_pred[:, :, :, ::-1].copy()).cuda()
+                flip_pred[:, :, :, ::-1].copy())
             pred += flip_pred
             pred = pred * 0.5
         return pred.exp()
@@ -225,7 +225,7 @@ class BaseDataset(data.Dataset):
         stride_h = int(self.crop_size[0] * 2.0 / 3.0)
         stride_w = int(self.crop_size[1] * 2.0 / 3.0)
         final_pred = torch.zeros([1, self.num_classes,
-                                  ori_height, ori_width]).cuda()
+                                  ori_height, ori_width])
         padvalue = -1.0 * np.array(self.mean) / np.array(self.std)
         for scale in scales:
             new_img = self.multi_scale_aug(image=image,
@@ -251,8 +251,8 @@ class BaseDataset(data.Dataset):
                 cols = int(np.ceil(1.0 * (new_w -
                                              self.crop_size[1]) / stride_w)) + 1
                 preds = torch.zeros([1, self.num_classes,
-                                     new_h, new_w]).cuda()
-                count = torch.zeros([1, 1, new_h, new_w]).cuda()
+                                     new_h, new_w])
+                count = torch.zeros([1, 1, new_h, new_w])
 
                 for r in range(rows):
                     for c in range(cols):

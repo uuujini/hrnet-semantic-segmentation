@@ -30,7 +30,7 @@ _C.MODEL = CN()
 _C.MODEL.NAME = 'seg_hrnet'
 _C.MODEL.PRETRAINED = ''
 _C.MODEL.ALIGN_CORNERS = True
-_C.MODEL.NUM_CLASSES = 19  # Add this line
+_C.MODEL.NUM_CLASSES = 19
 _C.MODEL.NUM_OUTPUTS = 1
 _C.MODEL.EXTRA = CN(new_allowed=True)
 
@@ -57,10 +57,10 @@ _C.DATASET.EXTRA_TRAIN_SET = ''
 _C.DATASET.TEST_SET = 'images/val'
 _C.DATASET.ANNOTATIONS = 'annotations/instances_default.json'
 
-_C.OUTPUT_DIR = 'outputs/'
-_C.CHECKPOINT_DIR = 'outputs/checkpoints/'
-_C.BEST_MODEL_DIR = 'outputs/best_models/'
-_C.LOG_DIR = 'logs/'
+_C.OUTPUT_DIR = 'output/'
+_C.CHECKPOINT_DIR = 'output/checkpoints/'
+_C.BEST_MODEL_DIR = 'output/best_models/'
+_C.LOG_DIR = 'log/'
 
 # training
 _C.TRAIN = CN()
@@ -92,7 +92,7 @@ _C.TRAIN.NESTEROV = False
 _C.TRAIN.IGNORE_LABEL = -1
 
 _C.TRAIN.BEGIN_EPOCH = 0
-_C.TRAIN.END_EPOCH = 484
+_C.TRAIN.END_EPOCH = 10
 _C.TRAIN.EXTRA_EPOCH = 0
 
 _C.TRAIN.RESUME = False
@@ -101,7 +101,7 @@ _C.TRAIN.BATCH_SIZE_PER_GPU = 32
 _C.TRAIN.SHUFFLE = True
 # only using some training samples
 _C.TRAIN.NUM_SAMPLES = 0
-_C.TRAIN.EPOCHS = 484
+_C.TRAIN.EPOCHS = 10
 
 # testing
 _C.TEST = CN()

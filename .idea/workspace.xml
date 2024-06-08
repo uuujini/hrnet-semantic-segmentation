@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d953cd5-930f-4b41-a355-02c4d3a4a921" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/HRNet.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/lib/config/default.py" beforeDir="false" afterPath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/lib/config/default.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/lib/models/hrnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/lib/models/hrnet.py" afterDir="false" />
-    </list>
+    <list default="true" id="7d953cd5-930f-4b41-a355-02c4d3a4a921" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,38 +46,49 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.Prediction_food_images.executor&quot;: &quot;Run&quot;,
+    &quot;Python.image22.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pole_split.executor&quot;: &quot;Run&quot;,
     &quot;Python.predict_model.executor&quot;: &quot;Run&quot;,
     &quot;Python.train (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.train (2).executor&quot;: &quot;Run&quot;,
     &quot;Python.train.executor&quot;: &quot;Run&quot;,
     &quot;Python.train_pole (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.train_pole.executor&quot;: &quot;Run&quot;,
+    &quot;Python.visual.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Shell Script.run_dist.sh.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yujin/HRNet&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yujin/HRNet/HRNet-Semantic-Segmentation/tools&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;service.view.auto.scroll.to.source&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\yujin\HRNet" />
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation\tools" />
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation\output\best_models" />
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation/pretained_models" />
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation\lib\datasets" />
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation\lib\datasets\pole" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yujin\HRNet\HRNet-Semantic-Segmentation\data" />
       <recent name="C:\Users\yujin\HRNet\HRNet-Custom\data\pole\annotations" />
       <recent name="C:\Users\yujin\HRNet\HRNet-Custom\experiments\custom_dataset" />
       <recent name="C:\Users\yujin\HRNet\HRNet-Custom\data\pole" />
       <recent name="C:\Users\yujin\HRNet\HRNet-Custom\tools" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train">
-    <configuration name="predict_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Prediction_food_images">
+    <configuration name="Prediction_food_images" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HRNet" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,12 +97,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Custom/tools" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Custom/tools/predict_model.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools/Prediction_food_images.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -109,7 +111,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="image22" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HRNet" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -118,12 +120,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/tools" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/tools/train.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools/image22.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -132,7 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="visual" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HRNet" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,35 +143,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Custom/tools" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Custom/tools/train.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="train_pole" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="HRNet" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HRNet-Custom/tools" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Custom/tools/train_pole.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools/visual.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -180,10 +159,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train" />
-        <item itemvalue="Python.predict_model" />
-        <item itemvalue="Python.train (1)" />
-        <item itemvalue="Python.train_pole" />
+        <item itemvalue="Python.Prediction_food_images" />
+        <item itemvalue="Python.image22" />
+        <item itemvalue="Python.visual" />
       </list>
     </recent_temporary>
   </component>
@@ -206,7 +184,14 @@
       <workItem from="1716878177093" duration="6732000" />
       <workItem from="1717217301965" duration="3047000" />
       <workItem from="1717221475414" duration="17615000" />
-      <workItem from="1717302496565" duration="11532000" />
+      <workItem from="1717302496565" duration="24171000" />
+      <workItem from="1717393691601" duration="293000" />
+      <workItem from="1717394879040" duration="13900000" />
+      <workItem from="1717464595840" duration="10252000" />
+      <workItem from="1717490057616" duration="28000" />
+      <workItem from="1717680773210" duration="13446000" />
+      <workItem from="1717750145752" duration="31322000" />
+      <workItem from="1717818850000" duration="892000" />
     </task>
     <servers />
   </component>
@@ -225,10 +210,15 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HRNet$image22.coverage" NAME="image22 Coverage Results" MODIFIED="1717817003267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
     <SUITE FILE_PATH="coverage/HRNet$train_pole.coverage" NAME="train_pole Coverage Results" MODIFIED="1717225411915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Custom/tools" />
     <SUITE FILE_PATH="coverage/HRNet$predict_model.coverage" NAME="predict_model Coverage Results" MODIFIED="1717307867615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Custom/tools" />
+    <SUITE FILE_PATH="coverage/HRNet$Prediction_food_images.coverage" NAME="Prediction_food_images Coverage Results" MODIFIED="1717817009144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
+    <SUITE FILE_PATH="coverage/HRNet$pole_split.coverage" NAME="pole_split Coverage Results" MODIFIED="1717344459481" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation/lib/datasets/pole" />
+    <SUITE FILE_PATH="coverage/HRNet$train__2_.coverage" NAME="train (2) Coverage Results" MODIFIED="1717352492378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
     <SUITE FILE_PATH="coverage/HRNet$train_pole__1_.coverage" NAME="train_pole (1) Coverage Results" MODIFIED="1717220450197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Custom/tools" />
     <SUITE FILE_PATH="coverage/HRNet$train.coverage" NAME="train Coverage Results" MODIFIED="1717312251876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Custom/tools" />
-    <SUITE FILE_PATH="coverage/HRNet$train__1_.coverage" NAME="train (1) Coverage Results" MODIFIED="1717227391118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/tools" />
+    <SUITE FILE_PATH="coverage/HRNet$visual.coverage" NAME="visual Coverage Results" MODIFIED="1717785580706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation/tools" />
+    <SUITE FILE_PATH="coverage/HRNet$train__1_.coverage" NAME="train (1) Coverage Results" MODIFIED="1717412345503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HRNet-Semantic-Segmentation-HRNet-OCR/tools" />
   </component>
 </project>
